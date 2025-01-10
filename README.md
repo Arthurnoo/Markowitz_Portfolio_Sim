@@ -7,8 +7,7 @@ Simulateur de Portefeuille avec Optimisation de Markowitz
 MarkowitzPortfolioSimulator/
 │
 ├── data/                          # Dossier pour les fichiers de données téléchargées ou statiques
-│   ├── historical_prices.csv       # Données historiques de prix (téléchargées ou exemples)
-│   ├── example_returns.csv         # Exemple de rendements pour démonstration
+│   ├── get_data.py                # Récupérer les tickers qui m'intéressent
 │
 ├── src/                           # Code source principal
 │   ├── __init__.py                # Fichier d'initialisation pour le module
