@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des 50 Principaux Tickers</title>
+    <style>
+        /* Style général pour la page */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        /* Style du tableau */
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1rem;
+            min-width: 600px;
+            background-color: #1E1E1E;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        thead tr {
+            background-color: #004e92;
+            color: #FFFFFF;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #333;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #2D2D2D;
+        }
+
+        tbody tr:hover {
+            background-color: #444;
+            cursor: pointer;
+        }
+
+        /* Lien pour retour ou redirection */
+        a {
+            text-decoration: none;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des 50 Principaux Tickers</h1>
+    
+    <!-- Tableau -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de l'Entreprise/Indice</th>
+                <th>Ticker</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apple Inc.</td>
+                <td>AAPL</td>
+            </tr>
+            <tr>
+                <td>Microsoft Corp.</td>
+                <td>MSFT</td>
+            </tr>
+            <tr>
+                <td>Amazon.com Inc.</td>
+                <td>AMZN</td>
+            </tr>
+            <tr>
+                <td>Alphabet Inc. (Class A)</td>
+                <td>GOOGL</td>
+            </tr>
+            <tr>
+                <td>Alphabet Inc. (Class C)</td>
+                <td>GOOG</td>
+            </tr>
+            <tr>
+                <td>NVIDIA Corp.</td>
+                <td>NVDA</td>
+            </tr>
+            <tr>
+                <td>Tesla Inc.</td>
+                <td>TSLA</td>
+            </tr>
+            <tr>
+                <td>Meta Platforms Inc.</td>
+                <td>META</td>
+            </tr>
+            <tr>
+                <td>Berkshire Hathaway Inc.</td>
+                <td>BRK.B</td>
+            </tr>
+            <tr>
+                <td>Visa Inc.</td>
+                <td>V</td>
+            </tr>
+            <tr>
+                <td>Johnson & Johnson</td>
+                <td>JNJ</td>
+            </tr>
+            <tr>
+                <td>Exxon Mobil Corp.</td>
+                <td>XOM</td>
+            </tr>
+            <tr>
+                <td>Procter & Gamble Co.</td>
+                <td>PG</td>
+            </tr>
+            <tr>
+                <td>UnitedHealth Group Inc.</td>
+                <td>UNH</td>
+            </tr>
+            <tr>
+                <td>JPMorgan Chase & Co.</td>
+                <td>JPM</td>
+            </tr>
+            <!-- Ajoute les autres entreprises ici -->
+        </tbody>
+    </table>
+
+    <!-- Lien retour ou autre -->
+    <p>
+        <a href="http://localhost:8501">Revenir au Questionnaire Principal</a>
+    </p>
+</body>
+</html>
