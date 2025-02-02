@@ -1,3 +1,5 @@
+import os
+import pickle
 import subprocess
 import sys
 
@@ -8,12 +10,18 @@ except ImportError:
     print("Streamlit n'est pas installé. Installation en cours...")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "streamlit"])
 
+# 📌 Définir le chemin du fichier
+DATA_DIR = "data"
+FILE_PATH = os.path.join(DATA_DIR, "validated_tickers.pkl")
 
-# Titre de la page
+# Vérifier si le dossier "data" existe, sinon le créer
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
+
+# 📌 Titre de la page
 st.title("Portefeuille Optimisé - Questionnaire")
 
-
-# Panneau de Configuration (Côté Gauche)
+# 📌 Panneau de Configuration (Côté Gauche)
 st.sidebar.header("Paramètres Généraux")
 
 # A. Réglages des Contraintes
@@ -48,7 +56,7 @@ risk_free_rate = st.sidebar.number_input(
     min_value=0.0, value=1.5, step=0.1
 )
 
-# Panneau Principal (Côté Droit)
+# 📌 Panneau Principal (Côté Droit)
 st.header("Sélection des Tickers")
 
 # Ajouter un lien pour voir les tickers
@@ -59,10 +67,10 @@ st.markdown(
     """
 )
 
-# Bloc pour entrer les tickers
+# 📌 Bloc pour entrer les tickers
 st.subheader("Entrez les tickers que vous souhaitez inclure dans votre portefeuille")
 
-# Session state pour stocker les tickers dynamiquement
+# Initialisation des session states si besoin
 if "tickers" not in st.session_state:
     st.session_state.tickers = [""] * 5  # 5 blocs par défaut
 
@@ -78,12 +86,23 @@ for i in range(len(st.session_state.tickers)):
 if st.button("Add a ticker"):
     add_ticker_block()
 
-# Bouton pour afficher les tickers sélectionnés
-if st.button("Valider les tickers"):
-    tickers_selected = [ticker for ticker in st.session_state.tickers if ticker.strip()]
-    st.write("Tickers sélectionnés :", tickers_selected)
+# 🚀 **Bouton unique pour valider et enregistrer les tickers**
+if st.button("✅ Valider les tickers", key="validate_tickers_button"):
+    tickers_selected = [ticker.strip() for ticker in st.session_state.tickers if ticker.strip()]
+    
+    if not tickers_selected:
+        st.warning("⚠️ Aucun ticker sélectionné. Veuillez entrer au moins un ticker.")
+    else:
+        st.session_state.validated_tickers = tickers_selected  # Sauvegarde en session
 
-# Méthodes d'Optimisation
+        # ✅ **Sauvegarde dans `data/validated_tickers.pkl`**
+        with open(FILE_PATH, "wb") as f:
+            pickle.dump(tickers_selected, f)
+
+        st.success(f"✅ Tickers validés et enregistrés dans '{FILE_PATH}'.")
+        st.write("Tickers validés :", tickers_selected)
+
+# 📌 Méthodes d'Optimisation
 st.header("Méthode d'Optimisation")
 optimization_method = st.selectbox(
     "Quel type d'optimisation voulez-vous utiliser ?",
@@ -93,15 +112,6 @@ target_return = None
 if optimization_method == "Rendement cible":
     target_return = st.number_input("Rendement cible (%)", min_value=0.0, value=8.0, step=0.1)
 
-# Bouton pour lancer l'optimisation
+# 📌 Bouton pour lancer l'optimisation
 if st.button("Lancer l'optimisation"):
     st.write("L'optimisation est en cours...")
-    # Appel de la fonction d'optimisation ici
-
-
-if st.button("Valider les tickers"):
-    tickers_selected = st.session_state.tickers + [
-        ticker for ticker in st.session_state.removable_tickers if ticker.strip()
-    ]
-    st.session_state.validated_tickers = tickers_selected  # Sauvegarde les tickers validés
-    st.write("Tickers validés :", tickers_selected)
