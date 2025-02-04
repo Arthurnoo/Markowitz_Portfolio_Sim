@@ -12,40 +12,43 @@ try:
 except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
-# 📌 Chemin vers le fichier des tickers validés
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Récupère le chemin absolu du script en cours
-DATA_DIR = os.path.join(BASE_DIR, "../data")  # Remonte dans `data`
-FILE_PATH = os.path.join(DATA_DIR, "validated_tickers.pkl")  # Chemin final du fichier
+# 📌 Définition des chemins de fichiers
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Chemin absolu du script en cours
+DATA_DIR = os.path.join(BASE_DIR, "../data")  # Accès au dossier `data`
+ANSWERS_FILE = os.path.join(DATA_DIR, "answers.pkl")  # 📌 Nouveau fichier contenant toutes les réponses utilisateur
 
-def get_validated_tickers():
+def load_user_answers():
     """
-    Charge les tickers validés depuis le fichier `validated_tickers.pkl`.
+    Charge les réponses utilisateur depuis `answers.pkl` pour extraire les tickers et autres paramètres.
     
     Returns:
-        list: Liste des tickers validés.
+        dict: Dictionnaire contenant toutes les réponses de l'utilisateur.
     """
     try:
-        if not os.path.exists(FILE_PATH):
-            print(f"❌ Fichier introuvable : '{FILE_PATH}'\nAssurez-vous que le fichier a été créé via `questions.py`.")
+        if not os.path.exists(ANSWERS_FILE):
+            print(f"❌ Fichier introuvable : '{ANSWERS_FILE}'\nAssurez-vous que les réponses ont bien été enregistrées depuis `interface.py`.")
             return None
-        with open(FILE_PATH, "rb") as f:
-            tickers = pickle.load(f)
-        if not tickers:
-            print("⚠️ Aucun ticker enregistré. Veuillez valider des tickers via l'interface Streamlit.")
-            return None
-        return tickers
+        with open(ANSWERS_FILE, "rb") as f:
+            user_answers = pickle.load(f)
+        return user_answers
     except Exception as e:
-        print(f"❌ Erreur lors du chargement des tickers : {e}")
+        print(f"❌ Erreur lors du chargement des réponses utilisateur : {e}")
         return None
 
-# 📌 Vérification que le fichier existe bien
-tickers_selected = get_validated_tickers()
+# 📌 Chargement des réponses utilisateur
+user_answers = load_user_answers()
+if not user_answers:
+    print("❌ Impossible de récupérer les réponses utilisateur.")
+    exit()
 
-if tickers_selected:
-    print("\n✅ Tickers validés par l'utilisateur :")
-    print(tickers_selected)
-else:
-    print("❌ Aucun ticker validé.")
+# 📌 Extraction des tickers validés
+tickers_selected = user_answers.get("tickers", [])
+if not tickers_selected:
+    print("❌ Aucun ticker validé dans `answers.pkl`.")
+    exit()
+
+print("\n✅ Tickers validés par l'utilisateur :")
+print(tickers_selected)
 
 def download_data(tickers, period="5y", interval="1d"):
     """
@@ -100,7 +103,7 @@ def calculate_returns(data):
 
 def calculate_statistics(returns):
     """
-    Calcule les rendements moyens, la volatilité et la matrice de covariance en utilisant Adj Close uniquement.
+    Calcule les rendements moyens, la volatilité et la matrice de covariance.
 
     Args:
         returns (pd.DataFrame): Rendements journaliers.
@@ -128,7 +131,7 @@ def analyze_portfolio():
     """
     Récupère les tickers validés, télécharge les données et calcule les statistiques.
     """
-    tickers = get_validated_tickers()
+    tickers = tickers_selected  # On utilise directement les tickers de `answers.pkl`
     if not tickers:
         return
 
@@ -166,8 +169,7 @@ def analyze_portfolio():
     print("\n🔄 **Matrice de Corrélation**")
     print(corr_matrix)
 
-
-    return stats  # Renvoie les statistiques pour d'autres utilisations
+    return stats  # Renvoie les statistiques pour `portfolio_optimizer.py`
 
 # 📌 Exécuter l'analyse si ce script est lancé directement
 if __name__ == "__main__":
