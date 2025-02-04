@@ -6,62 +6,27 @@ Simulateur de Portefeuille avec Optimisation de Markowitz
 ```python
 MarkowitzPortfolioSimulator/
 │
-├── data/                          # Dossier pour les fichiers de données téléchargées ou statiques
-│   ├── get_data.py                # Récupérer les tickers qui m'intéressent
-│
-├── src/                           # Code source principal
+├── data/                     # Dossier concernant la compréhension et la récupération de la data
 │   ├── __init__.py                # Fichier d'initialisation pour le module
-│   ├── data_fetcher.py            # Récupération des données financières (yfinance)
-│   ├── statistics.py              # Calcul des métriques : rendement, volatilité, covariance
-│   ├── optimizer.py               # Optimisation du portefeuille
-│   ├── visualization.py           # Graphiques pour la frontière efficiente et autres
-│   ├── streamlit_app.py           # Application interactive Streamlit
+│   ├── answer.pkl                 # Fichier des réponses de l'utilisateur dans interface.py
+│   ├── get_data.py                # Récupérer les tickers du S&P 500
+│   ├── interface.py               # Page internet streamlit pour récupérer les informations de l'utilisateur, et afficher les résultats
+│   ├── tickers_list.py            # Liste des principaux tickers (aide pour les utilisateurs)
+│   ├── yfinance.ipynb             # Notebook pour la compréhension basique de yfinance
 │
-├── notebooks/                     # Notebooks interactifs pour démonstration
-│   ├── example_simulation.ipynb   # Exemple complet d'utilisation du simulateur
+├── main/                     # Notebooks interactifs pour démonstration
+│   ├── __init__.py                # Fichier d'initialisation pour le module
+│   ├── optimized_portfolio.pkl    # Fichier avec les données finales pour l'exporter dans interface.py
+│   ├── portfolio_optimizer.py     # Optimisation des données sous contraintes
+│   ├── statistics.py              # Calcul des statistiques basiques des tickers (rendements moyens, volatilités, matrice de corrélation)
 │
-├── tests/                         # Tests unitaires
-│   ├── test_data_fetcher.py       # Tests pour la récupération des données
-│   ├── test_statistics.py         # Tests pour les calculs statistiques
-│   ├── test_optimizer.py          # Tests pour l'optimisation
-│   ├── test_streamlit_app.py      # Tests pour l'application Streamlit
+├── tests/                    # Tests unitaires
+│   ├── test_1.py                  # Simulation de réponse utilisateur 1 (5 tickers)
+│   ├── test_2.py                  # Simulation de réponse utilisateur 2 (10 tickers)
+│   ├── test_3.py                  # Simulation de réponse utilisateur 3 (20 tickers)
+│   ├── run_tests.py               # Faire tourner les fichiers de tests et vérifier que tout fonctionne
 │
 ├── LICENSE                        # Licence du projet
 ├── README.md                      # Documentation principale
-├── requirements.txt               # Dépendances Python nécessaires
-└── .streamlit/                    # Configuration pour Streamlit
-    ├── config.toml                # Paramètres de configuration (ex : thème, port)
+└── requirements.txt               # Dépendances Python nécessaires
 ```
-
-Voici à quoi servent chacune des pages :
-1. `src/data_fetcher.py` :
-  - Récupère les données financières depuis des sources comme yfinance.
-  - Offre des fonctionnalités pour télécharger, sauvegarder, et charger des données.
-2. `src/statistics.py` :
-  - Calcule les rendements moyens, la matrice de covariance, et les statistiques des portefeuilles.
-3. `src/optimizer.py` :
-  - Implémente les algorithmes d’optimisation pour minimiser le risque ou maximiser le rendement/ration de Sharpe.
-4. `src/visualisation.py`:
-  - Gère les graphiques interactifs pour visualiser la frontière efficiente, les poids des portefeuilles, etc.
-5. `src/streamlit_app.py` :
-  - Application interactive Streamlit permettant :
-    - De poser des questions sur le profil de risque.
-    - De configurer les paramètres d’optimisation.
-    - De visualiser les résultats.
-------
-6. `notebooks/example_simulation.ipynb`:
-  - Montre comment récupérer des données, calculer les rendements, optimiser un portefeuille, et afficher les graphiques.
-------
-7. `tests/test_data_fetcher.py` :
-  - Vérifie que les données sont correctement récupérées et formatées.
-8. `tests/test_statistics.py` :
-  - Teste les calculs des métriques (rendements, volatilité, etc.).
-9. `tests/test_optimizer.py` :
-  - Vérifie la convergence et la validité des résultats de l’optimisation.
-10. `tests/test_streamlit_app.py` :
-  - Valide les entrées utilisateur et les réponses de l’application Streamlit.
-------
-11. `requirements.txt` :
-  - Contient la liste des dépendances Python nécessaires :yfinance, numpy, pandas, scipy, matplotlib, streamlit.
-12. `.streamlit/` :
-  - Configurer l'apparence de l'interface streamlit.
