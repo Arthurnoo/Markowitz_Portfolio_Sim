@@ -148,8 +148,6 @@ streamlit run data/interface.py
 
 **Arthur NEAU**
 
-Sous la supervision de **M. Rémi Genet**.
-
 ---
 
 ## Licence
