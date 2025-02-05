@@ -1,13 +1,6 @@
 import subprocess
 import sys
 
-# Check if lxml is installed, if not install it
-try:
-    import lxml
-except ImportError:
-    print("lxml is not installed. Installation in progress...")
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "lxml"])
-
 
 import requests
 from bs4 import BeautifulSoup as bs

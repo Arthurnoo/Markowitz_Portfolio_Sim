@@ -5,13 +5,6 @@ import subprocess
 import yfinance as yf
 import pandas as pd
 
-# 📌 Vérifier et installer `yfinance` si nécessaire
-package = "yfinance"
-try:
-    import yfinance
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
 # 📌 Définition des chemins de fichiers
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Chemin absolu du script en cours
 DATA_DIR = os.path.join(BASE_DIR, "../data")  # Accès au dossier `data`
