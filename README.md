@@ -106,11 +106,6 @@ Ce panneau permet de configurer les paramètres d'investissement avant de lancer
 - Fréquence de rebalancement : Déterminez si le portefeuille doit être ajusté automatiquement (quotidien, hebdomadaire, mensuel, ou pas de rebalancement).
 - Prise en compte des dividendes : Activez ou désactivez cette option.
 - Taux sans risque : Définissez un taux de référence utilisé pour le ratio de Sharpe.
-- Méthode d’optimisation : Choisissez la stratégie d’optimisation :
-  - Maximisation du ratio de Sharpe (meilleur rendement ajusté au risque).
-  - Minimisation de la volatilité (portefeuille le plus stable).
-  - Optimisation pour un rendement cible (ajustement pour atteindre un objectif spécifique).
-- Rendement cible (si sélectionné) : Indiquez votre objectif de rendement annuel.
 
 📍 Panneau principal (côté droit)
 Ce panneau est dédié à la sélection des actifs et à l'affichage des résultats.
@@ -120,7 +115,12 @@ Ce panneau est dédié à la sélection des actifs et à l'affichage des résult
 Entrée des tickers : Saisissez les symboles boursiers des actifs à inclure dans votre portefeuille.
 - Ajout dynamique : Utilisez le bouton "Add a ticker" pour ajouter de nouveaux actifs.
 - Assistance : Un lien vous permet d'afficher une liste des principaux tickers.
-  - Lancement de l'optimisation
+- Méthode d’optimisation : Choisissez la stratégie d’optimisation :
+  - Maximisation du ratio de Sharpe (meilleur rendement ajusté au risque).
+  - Minimisation de la volatilité (portefeuille le plus stable).
+  - Optimisation pour un rendement cible (ajustement pour atteindre un objectif spécifique).
+- Rendement cible (si sélectionné) : Indiquez votre objectif de rendement annuel.
+
 
 Bouton "Valider et Lancer l’Optimisation" : Une fois les paramètres définis, cliquez pour lancer l’algorithme d’optimisation.
 Exécution automatique : Le système récupère les données financières, applique les calculs et génère les résultats.
