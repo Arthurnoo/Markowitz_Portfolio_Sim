@@ -91,23 +91,51 @@ Ce fichier est un point de départ pour comprendre comment utiliser le projet da
 
 ## Interface Streamlit
 
-Pour rendre l’utilisation du framework plus accessible, nous fournissons une **interface utilisateur** développée avec [Streamlit](https://streamlit.io/). Elle vous permet de réaliser et de visualiser vos backtests sans avoir à écrire de code Python. Voici ce à quoi ressemble l’interface utilisateur :
+Pour rendre l'utilisation de l'outil plus intuitive, nous avons développé une interface utilisateur avec Streamlit. Elle permet de configurer son portefeuille, de lancer l’optimisation et de visualiser les résultats en quelques clics, sans avoir à écrire une seule ligne de code Python.
 
-![Interface Streamlit](images/streamlit_interface.png)
+Voici à quoi ressemble l’interface utilisateur :
 
-- **Panneau de configuration (côté gauche)** :
-  - Réglage des paramètres financiers (coûts de transaction, slippage, taux sans risque, etc.).
-  - Choix de la fréquence de rebalancement (journalier, hebdomadaire, mensuel...).
-  - Sélection du schéma de pondération (EqualWeight, MarketCapWeight...).
-  - Définition d’un index de “special start” pour ignorer un certain nombre de lignes de données initiales.
-  - Choix de la bibliothèque de visualisation (matplotlib, seaborn, plotly…).
-  - Activations optionnelles (Vol Target, comparaison de stratégies, etc.).
+![Question py](https://github.com/user-attachments/assets/5f745dc6-961f-449d-b5f9-fd885a9fbeb0)
 
-- **Panneau principal (côté droit)** :
-  - Téléversement de fichiers de données (formats CSV, Parquet...).
-  - Sélection de la stratégie (Moyenne Mobile, MinVariance, etc.).
-  - Configuration des paramètres spécifiques à la stratégie (ex. taille de fenêtres pour une stratégie de moyennes mobiles).
-  - Bouton d’exécution du backtest et affichage des résultats (statistiques, graphiques interactifs).
+🛠 Panneau de configuration (côté gauche)
+Ce panneau permet de configurer les paramètres d'investissement avant de lancer l'optimisation.
+
+- Niveau de risque : Sélectionnez votre appétence au risque (Faible, Modéré, Élevé).
+- Budget total : Indiquez le montant total que vous souhaitez investir.
+- Contraintes d’allocation : Fixez les bornes de répartition pour chaque actif (% minimum et % maximum).
+- Fréquence de rebalancement : Déterminez si le portefeuille doit être ajusté automatiquement (quotidien, hebdomadaire, mensuel, ou pas de rebalancement).
+- Prise en compte des dividendes : Activez ou désactivez cette option.
+- Taux sans risque : Définissez un taux de référence utilisé pour le ratio de Sharpe.
+- Méthode d’optimisation : Choisissez la stratégie d’optimisation :
+  - Maximisation du ratio de Sharpe (meilleur rendement ajusté au risque).
+  - Minimisation de la volatilité (portefeuille le plus stable).
+  - Optimisation pour un rendement cible (ajustement pour atteindre un objectif spécifique).
+- Rendement cible (si sélectionné) : Indiquez votre objectif de rendement annuel.
+
+📍 Panneau principal (côté droit)
+Ce panneau est dédié à la sélection des actifs et à l'affichage des résultats.
+
+- Sélection des actifs
+
+Entrée des tickers : Saisissez les symboles boursiers des actifs à inclure dans votre portefeuille.
+- Ajout dynamique : Utilisez le bouton "Add a ticker" pour ajouter de nouveaux actifs.
+- Assistance : Un lien vous permet d'afficher une liste des principaux tickers.
+  - Lancement de l'optimisation
+
+Bouton "Valider et Lancer l’Optimisation" : Une fois les paramètres définis, cliquez pour lancer l’algorithme d’optimisation.
+Exécution automatique : Le système récupère les données financières, applique les calculs et génère les résultats.
+
+📊 Affichage des résultats
+
+- Résumé des performances :
+- Rendement attendu (%)
+- Volatilité attendue (%)
+- Répartition optimale :
+Affichage des poids optimaux pour chaque actif dans le portefeuille.
+- Évolution du portefeuille vs S&P 500 :
+Un graphique interactif compare la performance passée du portefeuille optimisé face au S&P 500.
+- Montants investis :
+Détail du montant alloué à chaque actif en fonction du budget initial.
 
 Pour lancer l'interface graphique Streamlit, exécutez la commande suivante depuis le terminal :
 
