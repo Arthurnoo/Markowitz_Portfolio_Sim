@@ -44,6 +44,8 @@ cd Markowitz_Portfolio_Sim
 Installer les dépendances :
 ```bash
 pip install -r requirements.txt
+pip install lxml
+pip install yfinance
 ```
 ---
 
