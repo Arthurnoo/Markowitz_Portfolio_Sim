@@ -84,7 +84,7 @@ MarkowitzPortfolioSimulator/
 ## Utilisation
 
 Le projet permet d’optimiser un portefeuille d’investissement sous contraintes.
-Pour comprendre son fonctionnement, consultez le notebook : portfolio_optimizer_tutorial.ipynb
+Pour comprendre son fonctionnement, consultez le notebook : `portfolio_optimizer_tutorial.ipynb`
 Ce fichier est un point de départ pour comprendre comment utiliser le projet dans son intégralité.
 
 ---
