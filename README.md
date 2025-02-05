@@ -1,12 +1,6 @@
-# Arthurnoo-Markowitz_Portfolio_Sim
-Simulateur de Portefeuille avec Optimisation de Markowitz
-
 ⚠️ En cours de construction ⚠️
 
-
-
-
-# Simulateur de Portfolio suivant la théorie de Markowitz
+# Simulateur de Portfolio suivant la théorie d'Optimisation de Markowitz
 
 ## Overview
 
