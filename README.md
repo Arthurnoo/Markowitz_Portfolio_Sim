@@ -1,3 +1,5 @@
+ ⚠️ The code is half in French and half in English, I am currently working on a full French version and a full English version ⚠️
+
 # Simulateur de Portfolio suivant la théorie d'Optimisation de Markowitz
 
 ## Overview
