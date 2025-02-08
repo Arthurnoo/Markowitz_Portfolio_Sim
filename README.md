@@ -1,5 +1,3 @@
-⚠️ En cours de construction ⚠️
-
 # Simulateur de Portfolio suivant la théorie d'Optimisation de Markowitz
 
 ## Overview
